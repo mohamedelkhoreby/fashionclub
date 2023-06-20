@@ -1,0 +1,92 @@
+name: splashscreen
+description: A new Flutter project.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=2.19.4 <3.0.0'
+
+dependencies:
+  analyzer: ^5.12.0
+  dio: ^4.0.0
+  easy_localization: ^3.0.1
+  flutter:
+    sdk: flutter
+  flutter_svg: ^0.20.0-nullsafety.3
+  lottie: ^2.3.2
+  onboarding: ^3.1.0
+  retrofit: ^3.0.1+1
+  rxdart: ^0.27.7
+  shared_preferences: ^2.1.1
+  json_serializable: ^6.6.2
+  json_annotation: ^4.8.1
+  dartz: ^0.10.1
+  internet_connection_checker: ^1.0.0+1
+  pretty_dio_logger: ^1.1.1
+  freezed: ^2.3.4
+  get_it: ^7.6.0
+  country_code_picker: ^3.0.0
+  carousel_slider: ^4.2.1
+  device_info: ^2.0.3
+  like_button: ^2.0.5
+  carousel_indicator: ^1.0.6
+  flutter_phoenix: ^1.0.0
+  url_launcher: ^6.1.11
+  flutter_launcher_icons: ^0.11.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  retrofit_generator: ^4.0.1
+  build_runner: ^2.3.3
+
+flutter_icons:
+  image_path: "assets/images/app-logo.png"
+  android: "launcher_icon"
+  adaptive_icon_background: "#000000"
+  adaptive_icon_foreground: "assets/images/app-logo.png"
+  ios: true
+  image_path_ios: "assets/images/app-logo.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  remove_alpha_ios: true
+  background_color_ios: "#000000"
+
+flutter:
+  uses-material-design: true
+  assets: 
+    - assets/images/splash_logo.png 
+    - assets/images/boarding.svg
+    - assets/images/soldLine.svg
+    - assets/images/hollowLine.svg
+    - assets/json/error.json
+    - assets/json/empty.json
+    - assets/json/loading.json
+    - assets/json/success.json
+    - assets/json/instagram-logo.json
+    - assets/json/twitter-logo.json
+    - assets/json/whatsapp-button.json
+    - assets/json/contact-email.json
+    - assets/images/menu.svg
+    - assets/images/rentLine.svg
+    - assets/images/aboutUs1.jpg
+    - assets/images/aboutUs2.jpg
+    - assets/images/aboutUs3.jpg
+    - assets/translations/ar-SA.json
+    - assets/translations/en-US.json
+
+  fonts:
+     - family: Cairo
+       fonts:
+         - asset: assets/fonts/Cairo-Black.ttf
+           weight: 700
+         - asset: assets/fonts/Cairo-Bold.ttf
+           weight: 700
+         - asset: assets/fonts/Cairo-SemiBold.ttf
+           weight: 600
+         - asset: assets/fonts/Cairo-Medium.ttf
+           weight: 500
+         - asset: assets/fonts/Cairo-Regular.ttf
+           weight: 400
+         - asset: assets/fonts/Cairo-Light.ttf
+           weight: 300  
