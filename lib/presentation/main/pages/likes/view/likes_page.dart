@@ -84,10 +84,10 @@ class LikePageState extends State<LikePage> {
                                   ]),
                               IconButton(
                                 onPressed: () async {
-                                  setState(() {
-                                    likes.remove(likes[index]);
-                                  });
                                   await _dbHelper.deleteLike(likes[index]);
+                                  setState(() {
+                                    likes.removeAt(index);
+                                  });
                                 },
                                 icon: Icon(
                                   Icons.favorite,
@@ -119,111 +119,3 @@ class LikePageState extends State<LikePage> {
     );
   }
 }
-/*
-class LikePage extends StatefulWidget {
-  const LikePage({super.key});
-
-  @override
-  LikePageState createState() => LikePageState();
-}
-
-class LikePageState extends State<LikePage> {
-  static List<Store> likes = <Store>[];
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: (likes.isNotEmpty)
-          ? Column(
-              children: [
-                GridView.count(
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.6,
-                    crossAxisSpacing: 5,
-                    mainAxisSpacing: 1,
-                    primary: false,
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    physics: const ScrollPhysics(),
-                    shrinkWrap: true,
-                    children: List.generate(likes.length, (index) {
-                      bool isSaved = likes.contains(likes[index]);
-                      return Column(children: [
-                        InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => ContentProduct(
-                                          stores: likes[index])));
-                            },
-                            child: Container(
-                              height: 200,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                image: NetworkImage(likes[index].image1),
-                                fit: BoxFit.cover,
-                              )),
-                            )),
-                        SizedBox(
-                          height: 40,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(AppStrings.price + likes[index].price,
-                                        style: getBoldStyle(
-                                            color: ColorManager.black,
-                                            fontSize: AppValues.v8)),
-                                    Text(
-                                      likes[index].title,
-                                      style: getRegularStyle(
-                                          color: ColorManager.black,
-                                          fontSize: AppValues.v8),
-                                    ),
-                                  ]),
-                              IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    if (isSaved) {
-                                      likes.remove(likes[index]);
-                                    }
-                                  });
-                                },
-                                icon: Icon(
-                                  isSaved
-                                      ? Icons.favorite
-                                      : Icons.favorite_outlined,
-                                  size: 15,
-                                ),
-                                color: isSaved
-                                    ? ColorManager.error
-                                    : ColorManager.grey,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ]);
-                    })),
-                const SizedBox(
-                  height: 110,
-                )
-              ],
-            )
-          : Padding(
-              padding: EdgeInsets.only(
-                  top: MediaQuery.sizeOf(context).height / AppValues.v3),
-              child: Center(
-                child: Text(
-                  AppStrings.likeEmpty,
-                  style: getRegularStyle4(
-                      color: ColorManager.black, fontSize: AppValues.v10),
-                ),
-              ),
-            ),
-    );
-  }
-}
-*/
