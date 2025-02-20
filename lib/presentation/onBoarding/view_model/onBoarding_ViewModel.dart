@@ -1,14 +1,13 @@
 import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:splashscreen/domain/model/models.dart';
 
+import '../../../domain/model/models.dart';
 import '../../base/base_model_view.dart';
 import '../../resources/strings_manager.dart';
 
-
 class OnBoardingViewModel extends BaseViewModel
-    with OnBoardingViewModelInput, OnBoardingViewModelOutput {
+    implements OnBoardingViewModelInput, OnBoardingViewModelOutput {
 // stream controllers outputs
   final StreamController _streamController =
       StreamController<SliderViewObject>();
@@ -55,8 +54,7 @@ class OnBoardingViewModel extends BaseViewModel
   int skipBoarding() {
     int skipIndex = --_currentIndex;
     if (skipIndex != 0) {
-     skipIndex = 2;
-
+      skipIndex = 2;
     }
     return skipIndex;
   }

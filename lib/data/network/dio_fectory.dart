@@ -4,11 +4,13 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../app/app_prefs.dart';
 import '../../app/constant.dart';
-const String APPLICATION_JSON = "application/json";
-const String CONTENT_TYPE = "content-type";
-const String ACCEPT = "accept";
-const String AUTHORIZATION = "authorization";
-const String DEFAULT_LANGUAGE = "language";
+
+const String applicationJson = "application/json";
+const String contentType = "Content-Type";
+const String accept = "Accept";
+const String authorization = "Authorization";
+const String defaultLanguage = "Language";
+
 class DioFactory {
   final AppPreferences _appPreferences;
 
@@ -16,20 +18,20 @@ class DioFactory {
 
   Future<Dio> getDio() async {
     Dio dio = Dio();
-    int _timeOut = 60 * 1000; // 1 min
+    int timeOut = 60 * 1000; // 1 min
     String language = await _appPreferences.getAppLanguage();
     String token = await _appPreferences.getUserToken();
     Map<String, String> headers = {
-      CONTENT_TYPE: APPLICATION_JSON,
-      ACCEPT: APPLICATION_JSON,
-      AUTHORIZATION: token,
-      DEFAULT_LANGUAGE: language
+      contentType: applicationJson,
+      accept: applicationJson,
+      authorization: token,
+      defaultLanguage: language
     };
 
     dio.options = BaseOptions(
         baseUrl: Constants.baseUrl,
-        connectTimeout: _timeOut,
-        receiveTimeout: _timeOut,
+        connectTimeout: Duration(milliseconds: timeOut),
+        receiveTimeout: Duration(milliseconds: timeOut),
         headers: headers);
 
     if (kReleaseMode) {
@@ -40,8 +42,6 @@ class DioFactory {
       dio.interceptors.add(PrettyDioLogger(
           requestHeader: true, requestBody: true, responseHeader: true));
     }
-
     return dio;
   }
 }
-

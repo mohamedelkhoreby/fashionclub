@@ -1,13 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
-import 'package:splashscreen/domain/model/models.dart';
-import 'package:splashscreen/presentation/onBoarding/view_model/onBoarding_ViewModel.dart';
 
 import '../../../app/app_prefs.dart';
 import '../../../app/dependency_injection.dart';
+import '../../../domain/model/models.dart';
 import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/constant_manager.dart';
@@ -16,14 +14,15 @@ import '../../resources/routes_manager.dart';
 import '../../resources/strings_manager.dart';
 import '../../resources/style_manager.dart';
 import '../../resources/values_manager.dart';
-
+import '../view_model/onboarding_viewmodel.dart';
 
 class OnBoardingView extends StatefulWidget {
-  const OnBoardingView({Key? key}) : super(key: key);
+  const OnBoardingView({super.key});
 
   @override
   OnBoardingViewState createState() => OnBoardingViewState();
 }
+
 class OnBoardingViewState extends State<OnBoardingView> {
   final PageController _pageController = PageController();
   final OnBoardingViewModel _viewModel = OnBoardingViewModel();
@@ -40,55 +39,48 @@ class OnBoardingViewState extends State<OnBoardingView> {
     super.initState();
   }
 
-  Material _skipButton() {
+  Widget _skipButton() {
     return Material(
       child: SizedBox(
-          width: 300.0,
-          height: 40.0,
-          child: ElevatedButton(
-            onPressed: () {
-             _pageController.animateToPage(_viewModel.skipBoarding(), 
-             curve: Curves.bounceInOut,
-             duration: const Duration(
-                      milliseconds: AppConstants.sliderAnimationTime)
-                      );
-            },
-            style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateProperty.all<Color>(ColorManager.white),
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0))),
+        width: 300.w,
+        height: 40.h,
+        child: ElevatedButton(
+          onPressed: () {
+            _pageController.animateToPage(_viewModel.skipBoarding(),
+                curve: Curves.easeInOut,
+                duration: const Duration(
+                    milliseconds: AppConstants.sliderAnimationTime));
+          },
+          child: Text(
+            AppStrings.bottomSkip,
+            style: getSemiBoldStyle(
+              color: ColorManager.black,
+              fontSize: FontSize.s13.sp,
             ),
-            child: Text(AppStrings.bottomSkip,
-                style: getSemiBoldStyle(
-                  color: ColorManager.black,
-                  fontSize: FontSize.s13,
-                )),
-          )),
+          ),
+        ),
+      ),
     );
   }
 
-  Material get _enterButton {
+  Widget get _enterButton {
     return Material(
       child: SizedBox(
-          width: 300.0,
-          height: 40.0,
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, Routes.loginRoute);
-            },
-            style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateProperty.all<Color>(ColorManager.white),
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0))),
+        width: 300.w,
+        height: 40.h,
+        child: ElevatedButton(
+          onPressed: () {
+            replacement(Routes.mainRoute);
+          },
+          child: Text(
+            AppStrings.bottomEnter,
+            style: getSemiBoldStyle(
+              color: ColorManager.black,
+              fontSize: FontSize.s13.sp,
             ),
-            child: Text(AppStrings.bottomENTER,
-                style: getSemiBoldStyle(
-                  color: ColorManager.black,
-                  fontSize: FontSize.s13,
-                )),
-          )),
+          ),
+        ),
+      ),
     );
   }
 
@@ -97,14 +89,18 @@ class OnBoardingViewState extends State<OnBoardingView> {
     _viewModel.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, designSize: const Size(375, 812));
     return StreamBuilder<SliderViewObject>(
-        stream: _viewModel.outputSliderViewObject,
-        builder: (context, snapshot) {
-          return _getContentWidget(snapshot.data);
-        });
+      stream: _viewModel.outputSliderViewObject,
+      builder: (context, snapshot) {
+        return _getContentWidget(snapshot.data);
+      },
+    );
   }
+
   Widget _getContentWidget(SliderViewObject? sliderViewObject) {
     if (sliderViewObject == null) {
       return Container();
@@ -126,22 +122,23 @@ class OnBoardingViewState extends State<OnBoardingView> {
             _viewModel.onPageChanged(index);
           },
           itemBuilder: (context, index) {
-            return
-              OnBoardingPage(sliderViewObject.sliderObject);
-          }),
+            return OnBoardingPage(sliderViewObject.sliderObject);
+          },
+        ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton:Padding(
-          padding: const EdgeInsets.symmetric(horizontal:50.0),
+        floatingActionButton: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 50.w),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Align(
                 alignment: Alignment.centerLeft,
-                // widgets indicator and arrows
-                child: _getBottomSheetWidget(sliderViewObject)
-              ), const SizedBox(
-                height: 60,
-              ),  sliderViewObject.currentIndex == sliderViewObject.numOfSlides - 1
+                child: _getBottomSheetWidget(sliderViewObject),
+              ),
+              SizedBox(
+                height: 60.h,
+              ),
+              sliderViewObject.currentIndex == sliderViewObject.numOfSlides - 1
                   ? _enterButton
                   : _skipButton()
             ],
@@ -155,53 +152,49 @@ class OnBoardingViewState extends State<OnBoardingView> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        // left arrow
         Padding(
-          padding: const EdgeInsets.all(AppPadding.p14),
+          padding: EdgeInsets.all(AppValues.v14.h),
           child: GestureDetector(
-            child: const SizedBox(
-              width: AppSize.s20,
-              height: AppSize.s20,
+            child: SizedBox(
+              width: AppValues.v20.w,
+              height: AppValues.v20.h,
             ),
             onTap: () {
-              // go to previous slide
               _pageController.animateToPage(_viewModel.goPrevious(),
                   duration: const Duration(
                       milliseconds: AppConstants.sliderAnimationTime),
-                  curve: Curves.bounceInOut);
-
+                  curve: Curves.easeInOut);
             },
           ),
         ),
-        // circle indicator
         Row(
           children: [
-            for (int i = 0 ; i < sliderViewObject.numOfSlides; i++)
+            for (int i = 0; i < sliderViewObject.numOfSlides; i++)
               Padding(
-                padding: const EdgeInsets.all(AppPadding.p0),
+                padding: EdgeInsets.all(AppValues.v0.h),
                 child: _getProperCircle(i, sliderViewObject.currentIndex),
               )
           ],
         ),
-        // right arrow
         Padding(
-          padding: const EdgeInsets.all(AppPadding.p14),
+          padding: EdgeInsets.all(AppValues.v14.h),
           child: GestureDetector(
-              child: const SizedBox(
-                width: AppSize.s20,
-                height: AppSize.s20,
-              ),
-              onTap: () {
-                // go to previous slide
-                _pageController.animateToPage(_viewModel.goNext(),
-                    duration: const Duration(
-                        milliseconds: AppConstants.sliderAnimationTime),
-                    curve: Curves.bounceInOut);
-              }),
-        )
+            child: SizedBox(
+              width: AppValues.v20.w,
+              height: AppValues.v20.h,
+            ),
+            onTap: () {
+              _pageController.animateToPage(_viewModel.goNext(),
+                  duration: const Duration(
+                      milliseconds: AppConstants.sliderAnimationTime),
+                  curve: Curves.easeInOut);
+            },
+          ),
+        ),
       ],
     );
   }
+
   Widget _getProperCircle(int index, int currentIndex) {
     if (index == currentIndex) {
       return SvgPicture.asset(ImageAssets.soldLine);
@@ -209,46 +202,46 @@ class OnBoardingViewState extends State<OnBoardingView> {
       return SvgPicture.asset(ImageAssets.hollowLine);
     }
   }
-
 }
+
 class OnBoardingPage extends StatelessWidget {
   final SliderObject _sliderObject;
 
-  const OnBoardingPage(this._sliderObject,{Key? key}) : super(key: key);
+  const OnBoardingPage(this._sliderObject, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Center(
-       child: Column(children: [
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 45.0),
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child: DefaultTextStyle(
-            style: getRegularStyle3(
-                color: ColorManager.white, fontSize: FontSize.s15),
-            textAlign: TextAlign.left,
-            child: Text(_sliderObject.title),
-          ),
-        ),
-      ),
-      Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 45.0, vertical: 10.0),
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: DefaultTextStyle(
-              style: getRegularStyle2(
-                  color: ColorManager.white, fontSize: FontSize.s13),
-              textAlign: TextAlign.left,
-              child: Text(
-                _sliderObject.body,
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 45.w),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: DefaultTextStyle(
+                style: getRegularStyle3(
+                    color: ColorManager.white, fontSize: FontSize.s15.sp),
+                textAlign: TextAlign.left,
+                child: Text(_sliderObject.title),
               ),
             ),
-          )),
-    ]
-    ));
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 45.w, vertical: 10.h),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: DefaultTextStyle(
+                style: getRegularStyle2(
+                    color: ColorManager.white, fontSize: FontSize.s13.sp),
+                textAlign: TextAlign.left,
+                child: Text(
+                  _sliderObject.body,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
-
-
-

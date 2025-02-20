@@ -1,12 +1,11 @@
-
 import '../network/error_handler.dart';
 import '../response/responses.dart';
 
-const CACHE_HOME_KEY = "CACHE_HOME_KEY";
-const CACHE_HOME_INTERVAL = 60 * 1000; // 1 MINUTE IN MILLIS
+const cacheHomeKey = "CACHE_HOME_KEY";
+const cacheHomeIntervel = 60 * 1000; // 1 MINUTE IN MILLIS
 
-const CACHE_STORE_DETAILS_KEY = "CACHE_STORE_DETAILS_KEY";
-const CACHE_STORE_DETAILS_INTERVAL = 60 * 1000; // 30s in millis
+const cacheStoreDetailsKey = "CACHE_STORE_DETAILS_KEY";
+const cacheStoreDetailsInterval = 60 * 1000; // 30s in millis
 
 abstract class LocalDataSource {
   Future<HomeResponse> getHome();
@@ -14,7 +13,6 @@ abstract class LocalDataSource {
 
   void clearCache();
   void removeFromCache(String key);
-
 }
 
 class LocalDataSourceImpl implements LocalDataSource {
@@ -23,20 +21,20 @@ class LocalDataSourceImpl implements LocalDataSource {
 
   @override
   Future<HomeResponse> getHome() async {
-    CachedItem? cachedItem = cacheMap[CACHE_HOME_KEY];
+    CachedItem? cachedItem = cacheMap[cacheHomeKey];
 
-    if (cachedItem != null && cachedItem.isValid(CACHE_HOME_INTERVAL)) {
+    if (cachedItem != null && cachedItem.isValid(cacheHomeIntervel)) {
       return cachedItem.data;
       // return the response from cache
     } else {
       // return error that cache is not valid
-      throw ErrorHandler.handle(DataSource.CACHE_ERROR);
+      throw ErrorHandler.handle(DataSource.cacheError);
     }
   }
 
   @override
   Future<void> saveHomeToCache(HomeResponse homeResponse) async {
-    cacheMap[CACHE_HOME_KEY] = CachedItem(homeResponse);
+    cacheMap[cacheHomeKey] = CachedItem(homeResponse);
   }
 
   @override

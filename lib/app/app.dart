@@ -1,8 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:splashscreen/presentation/resources/routes_manager.dart';
-import 'package:splashscreen/presentation/resources/theme_manager.dart';
 
+
+import '../presentation/resources/routes_manager.dart';
+import '../presentation/resources/theme_manager.dart';
 import 'app_prefs.dart';
 import 'dependency_injection.dart';
 
@@ -12,7 +13,7 @@ class App extends StatefulWidget {
 
   final int appState = 0;
   //singleton or single instance
-  static  const App _instance = App.internal();
+  static const App _instance = App.internal();
   //factory
   factory App() => _instance;
   @override
@@ -24,8 +25,12 @@ class AppState extends State<App> {
 
   @override
   void didChangeDependencies() {
-    _appPreferences.getLocal().then((local) => {context.setLocale(local)});
     super.didChangeDependencies();
+    _appPreferences.getLocal().then((local) {
+      if (mounted) {
+        context.setLocale(local);
+      }
+    });
   }
 
   @override
@@ -36,8 +41,9 @@ class AppState extends State<App> {
       locale: context.locale,
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: Routes.splashRoute,
+      initialRoute: Routes.shimmerRoute,
       theme: getAppTheme(),
+      navigatorKey: navigator,
     );
   }
 }

@@ -12,7 +12,7 @@ import '../../../resources/strings_manager.dart';
 
 
 class RentPage extends StatefulWidget {
-  const RentPage({Key? key}) : super(key: key);
+  const RentPage({super.key});
 
   @override
   RentPageState createState() => RentPageState();

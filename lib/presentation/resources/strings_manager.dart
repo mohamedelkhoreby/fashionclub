@@ -1,107 +1,158 @@
 class AppStrings {
-  //splashscreen strings
+  // Splash Screen
   static const appName = "Fashion Club";
 
-  //boardinghouse strings
-  static const boardingTitle1 = "FASHION CLUB";
-  static const boardingTitle2 = "REMEMBER DON'T MISS THING";
-  static const boardingTitle3 = "STEPS";
-  static const boardingBody1 = "we have a goal to make your style fashionable and save your money and weather  🌍";
-  static const boardingBody2 = "stay informed about your order status , available items , special events.";
-  static const boardingBody3 = "pick your items, your renting period, and contact us through the app ( mobile phone , whatsapp , mail ).";
+  // Onboarding Screen
+  static const boardingTitle1 = "Welcome to Fashion Club";
+  static const boardingTitle2 = "Never Miss a Beat";
+  static const boardingTitle3 = "Your Fashion Journey";
+  static const boardingBody1 =
+      "Our mission is to make your style stand out, save you money, and care for the planet 🌍.";
+  static const boardingBody2 =
+      "Stay updated on your orders, explore our exclusive items, and attend special events effortlessly.";
+  static const boardingBody3 =
+      "Select your items, choose a rental period, and connect with us via phone, WhatsApp, or email.";
   static const bottomContinue = "CONTINUE";
-  static const bottomENTER = "ENTER";
+  static const bottomEnter = "ENTER";
   static const bottomSkip = "SKIP";
 
-  //login & sign in
-  static const username = "username";
-  static const password = "password";
-  static const usernameError = "please enter username";
-  static const passwordError = "please enter password";
-  static const login = "login";
-  static const forgetPassword = "forgot password";
-  static const registerText = "SigIn";
+  // Login & Sign-In
+  static const username = "Username";
+  static const password = "Password";
+  static const usernameError = "Please enter a valid username.";
+  static const passwordError = "Please enter your password.";
+  static const login = "Log In";
+  static const forgetPassword = "Forgot Password?";
+  static const registerText = "Sign Up";
+  static const loading = "Loading...";
+  static const retryAgain = "Retry";
+  static const ok = "OK";
+  static const emailHint = "Email Address";
+  static const invalidEmail = "Invalid email format.";
+  static const resetPassword = "Reset Password";
+  static const success = "Success!";
+  static const userNameInvalid = "Invalid username.";
+  static const mobileNumberInvalid = "Invalid mobile number.";
+  static const passwordInvalid = "Invalid password.";
+  static const alreadyHaveAccount = "Already have an account?";
+  static const register = "Sign Up";
+  static const mobileNumber = "Mobile Number";
+
+  // Home Screen
+  static const homeTitle = "Welcome Back to Fashion Club";
+  static const menu = "Menu";
+
+  // Menu & Likes Screen
+  static const menuTitle = "Menu";
+  static const likeTitle = "Your Favorites";
+  static const likeEmpty = "No items yet! Start adding your favorites now. 😪";
+  static const price = "EGP";
+
+  // Rent Screen
+  static const rentTitle = "Rent Your Style";
+
+  // About Screen
+  static const aboutUsTitle = "About Us";
+  static const titleConcept = "Our Concept";
+  static const description_1 =
+      "Our goal is to enhance your style, save you money, and protect the planet 🌍.";
+  static const body1 =
+      "Choose your items, set the rental period, and reach out to us through the app.";
+  static const body2 = "Receive your items via pickup or doorstep delivery.";
+  static const body3 =
+      "Payment and deposit instructions will be shared post-booking.";
+  static const body4 =
+      "Return items on time or opt for courier service pick-up 🚴🏼‍♀.";
+  static const titleVision = "Our Vision";
+  static const visionBody =
+      "Fashion Club is your go-to destination for transforming your look with premium brands and expert fashion advice—without breaking the bank or harming the planet ✨.";
+  static const contactUs = "Contact Us";
+  static const faq = "FAQ";
+
+  // Privacy Policy
+  static const privacyTitle = "Privacy Policy";
+  static const informationTitle = "Information Collection and Use";
+  static const logDataTitle = "Log Data";
+  static const serviceTitle = "Service Providers";
+  static const securityTitle = "Your Security";
+  static const changePrivacyTitle = "Policy Updates";
+  static const contactUsTitle = "Reach Out to Us";
+  // body
+  static const privacyBody =
+      "MG built the Fashion Club app as a Commercial app. This SERVICE is provided by Fashion Club and is intended for use as is. This page informs visitors about our policies regarding the collection, use, and disclosure of personal information for those who use our Service. By using our Service, you agree to the collection and use of information as outlined in this policy.";
+  static const informationBody =
+      "To enhance your experience, we may request certain personally identifiable information, such as your name, email address, and phone number. This information will only be used to improve our Service and will not be shared except as described here.";
+  static const logDataBody =
+      "When you encounter an error while using our app, we may collect diagnostic data such as your IP address, device details, and usage statistics. This information is used to improve our Service.";
+  static const serviceBody =
+      "We may employ third-party services to support our Service, analyze usage, or perform related tasks. These third parties are bound to protect your information and use it solely for the purposes we specify.";
+  static const securityBody =
+      "Your trust is important to us, and we take all reasonable measures to protect your personal information. However, no method of data transmission or storage is completely secure, so we cannot guarantee absolute protection.";
+  static const changePrivacyBody =
+      "Our Privacy Policy may change periodically. Please review this page for updates. Changes are effective immediately upon posting. This policy was last updated on 2023-6-20.";
+  static const contactUsBody =
+      "If you have questions or feedback regarding our Privacy Policy, feel free to contact us.";
+
+  // Rent Item Details
+  static const priceDetails = "Price Details";
+  static const moreDetails = "More Information";
+  static const brandDetails = "Brand Name";
+  static const sizeDetails = "Available Sizes";
+  static const codeForRentDetails = "Rental Code";
+  static const remember = "Remember Your Rental Code!";
+  static const noRouteFound = "Route Not Found";
+  static const discount30 = "30% OFF";
+  static const discount40 = "40% OFF";
+  static const time24 = "Per Day (24h)";
+  static const time48 = "Per 2 Days (48h)";
+  static const timeWeek = "Weekly Rental";
+
+  // Error Handling
+  static const badRequestError = "Bad Request";
+  static const noContent = "No Content Available";
+  static const forbiddenError = "Access Denied";
+  static const unauthorizedError = "Unauthorized Access";
+  static const notFoundError = "Not Found";
+  static const conflictError = "Conflict Detected";
+  static const internalServerError = "Internal Server Error";
+  static const unknownError = "Unknown Error Occurred";
+  static const timeoutError = "Request Timed Out";
+  static const defaultError = "An Unexpected Error Occurred";
+  static const cacheError = "Cache Error";
+  static const noInternetError = "No Internet Connection";
+}
+
+class ResponseMessage {
+ //state
+  static const String success = "success";
+  static const noRouteFound = "no route found";
   static const loading = "loading...";
   static const retryAgain = "Retry";
   static const ok = "ok";
-  static const String emailHint = 'email';
-  static const String invalidEmail = "email error";
-  static const String resetPassword = "Reset";
-  static const String success = "success";
-  static const String userNameInvalid = "username";
-  static const String mobileNumberInvalid = "mobile number ";
-  static const String passwordInvalid = "password";
-  static const String alreadyHaveAccount = "Already have account";
-  static const register = "SigIn";
-  static const mobileNumber = "Mobile Number";
+  //show view
+  static const clinicShowView = "let's start with the patient information";
+  static const hospitalShowView = "SOON";
 
-  //home-screen strings
-  static const homeTitle = "Fashion Club";
-  static const menu = "Menu";
-  // menu & likes screen string
-  static const menuTitle = "MENU";
-  static const likeTitle = "likes";
-  static const likeEmpty = "No Items 😪 😭 ";
-  static const price = "EGY";
-
-  //rent screen strings
-  static const rentTitle = "RENT";
-
-  //about screen
-  static const aboutUsTitle = "ABOUT US ";
-  static const titleConcept = "Concept";
-  static const description_1 = "We Have a Goal to make your Style Fashionable and save your Money and Weather  🌍  ";
-  static const body1 = "pick your items, your Renting period, and contact us through the App (Mobile phone,WhatsApp,Mail ) .";
-  static const body2 = "Receive your items at a pickup point or get it Delivered to you in you Location.  ";
-  static const body3 = "payment method and deposit method will receive in a message , after your booking. ";
-  static const body4 = "Return the item by the exact date you requested, or if paid by the courier service, it will be picked up by delivery 🚴🏼‍♀.";
-  static const titleVision = "Vision";
-  static const visionBody = "Fashion Club Is The Perfect Place For Those Who Need A New Look From The Most Skilled Brands And Fashion Makers, Without Making Another Purchase, It Is The One-Stop For Events Without Losing Money, The Club Maybe Save The Weather As Much As Possible ✨ .";
-  static const contactUs = "CONTACT US";
-  static const faq = "FAQ";
-
-  //privacy screen
-    //title
-  static const privacyTitle = "Privacy Policy ";
-  static const informationTitle = "Information Collection and Use";
-  static const logDataTitle = "Log Data";
-  static const serviceTitle = "Service Providers ";
-  static const securityTitle = "Security ";
-  static const changePrivacyTitle = "Changes to This Privacy Policy ";
-  static const contactUsTitle = "Contact Us";
-    //body
-  static const privacyBody = "MG built the fashion club app as a Commercial app.This SERVICE is provided by fashion club app and is intended for use as is.This page is used to inform visitors regarding our policies with the collection, use, and disclosure of PersonalInformation if anyone decided to use our Service.If you choose to use our Service, then you agree to the collection and use of information in relation to this policy. The PersonalInformation that we collect is used for providing and improving the Service. We will not use or share your information with anyone except as described in this Privacy Policy.";
-  static const informationBody = "For a better experience, while using our Service, we may require you to provide us with certain personally identifiable information,including but not limited to first name, last name, e-mail address, and phone number. The information that we request will be retained by us and used as described in this privacy policy.The app does use third-party services that may collect information used to identify you. Link to the privacy policy of third-party service providers used by the app";
-  static const logDataBody = "We want to inform you that whenever you use our Service, in a case of an error in the app we collect data and information (through third-party products) on your phone called Log Data.This Log Data may include information such as your deviceInternet Protocol (“IP”) address, device name, operating system version, the configuration of the app when utilizing our Service,the time and date of your use of the Service, and other statistics.";
-  static const serviceBody = "We may employ third-party companies and individuals due to the following reasons: To facilitate our Service; To provide the Service on our behalf; To perform Service-related services;or To assist us in analyzing how our Service is used. We want to inform users of this Service that these third parties have access to their Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.";
-  static const securityBody = "We value your trust in providing us your Personal Information, thus we are striving to use commercially acceptable means of protecting it. But remember that no method of transmission over the internet, or method of electronic storage is 100% secure and reliable, and we cannot guarantee its absolute Security,";
-  static const changePrivacyBody = "We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on this page. This policy is effective as of 2023-6-20.";
-  static const contactUsBody = "If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us.";
-
-  //rent item by code
-  static const priceDetails = "Price details";
-  static const moreDetails = "More details";
-  static const brandDetails = "Brand Name";
-  static const sizeDetails = "Available Size";
-  static const codeForRentDetails = "Code for Rent";
-  static const remember = "Remember code for Rent My Dear ";
-  static const noRouteFound = "no Route Found";
-  static const discount30 = "30 %";
-  static const discount40 = "40 %";
-  static const time24 = "/24h";
-  static const time48 = "/48h";
-  static const timeWeek = "/week";
   // error handler
-  static const String badRequestError = "bad request error";
-  static const String noContent = "no content";
-  static const String forbiddenError = "forbidden";
-  static const String unauthorizedError = "unauthorized ";
-  static const String notFoundError = "not found";
-  static const String conflictError = "conflict error";
-  static const String internalServerError = "internal server error";
-  static const String unknownError = "unknown error";
-  static const String timeoutError = "timeout error";
-  static const String defaultError = "default error";
-  static const String cacheError = "cache error";
-  static const String noInternetError = "no internet";
+  static const String badRequestError =
+      "The request was invalid. Please try again.";
+  static const String noContent = "No content available.";
+  static const String forbiddenError = "Access to this resource is forbidden.";
+  static const String unauthorizedError = "You are not authorized.";
+  static const String notFoundError = "The requested resource was not found.";
+  static const String conflictError = "A conflict occurred. Please try again.";
+  static const String internalServerError =
+      "An internal server error occurred. Please try later";
+  static const String unknownError =
+      "An unknown error occurred. Please try again";
+  static const String receiveTimeout =
+      "The server is taking longer than expected to respond. Please wait a moment and try again.";
+  static const String connectTimeout =
+      "We’re having trouble connecting to our servers. Please try again.";
+  static const String timeoutError =
+      "The request timed out. Please check your connection.";
+  static const String defaultError = "Please try again another time";
+  static const String cacheError = "Failed to retrieve data from cache.";
+  static const String noInternetError =
+      "No internet connection. Please check your network.";
 }

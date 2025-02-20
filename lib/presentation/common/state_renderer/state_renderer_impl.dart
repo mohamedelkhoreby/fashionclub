@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:splashscreen/presentation/common/state_renderer/state_renderer.dart';
 
 import '../../../app/constant.dart';
 import '../../resources/strings_manager.dart';
+import 'state_renderer.dart';
 
 
 abstract class FlowState {
@@ -85,7 +85,7 @@ extension FlowStateExtension on FlowState {
   Widget getScreenWidget(BuildContext context, Widget contentScreenWidget,
       Function retryActionFunction) {
     switch (runtimeType) {
-      case LoadingState:
+      case const (LoadingState):
         {
           if (getStateRendererType() == StateRendererType.popupLoadingState) {
             // show popup loading
@@ -100,7 +100,7 @@ extension FlowStateExtension on FlowState {
                 retryActionFunction: retryActionFunction);
           }
         }
-      case ErrorState:
+      case const (ErrorState):
         {
           dismissDialog(context);
           if (getStateRendererType() == StateRendererType.popupErrorState) {
@@ -116,19 +116,19 @@ extension FlowStateExtension on FlowState {
                 retryActionFunction: retryActionFunction);
           }
         }
-      case EmptyState:
+      case const (EmptyState):
         {
           return StateRenderer(
               stateRendererType: getStateRendererType(),
               message: getMessage(),
               retryActionFunction: () {});
         }
-      case ContentState:
+      case const (ContentState):
         {
           dismissDialog(context);
           return contentScreenWidget;
         }
-      case SuccessState:
+      case const (SuccessState):
         {
           // i should check if we are showing loading popup to remove it before showing success popup
           dismissDialog(context);

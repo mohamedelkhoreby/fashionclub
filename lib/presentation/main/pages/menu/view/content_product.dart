@@ -3,8 +3,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/material.dart';
-import 'package:splashscreen/domain/model/models.dart';
 
+import '../../../../../domain/model/models.dart';
 import '../../../../resources/color_manager.dart';
 import '../../../../resources/strings_manager.dart';
 import '../../../../resources/style_manager.dart';
@@ -24,8 +24,8 @@ class _ContentProductState extends State<ContentProduct> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height / 2;
-    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.sizeOf(context).height / 2;
+    final width =MediaQuery.sizeOf(context).width;
     List image = [
       widget.stores.image1,
       widget.stores.image2,
@@ -37,8 +37,8 @@ class _ContentProductState extends State<ContentProduct> {
           foregroundColor: ColorManager.black,
           title: Text(
             widget.stores.title,
-            style:
-                getBoldStyle(color: ColorManager.black, fontSize: AppSize.s12),
+            style: getBoldStyle(
+                color: ColorManager.black, fontSize: AppValues.v12),
           ),
         ),
         body: SingleChildScrollView(
@@ -51,7 +51,7 @@ class _ContentProductState extends State<ContentProduct> {
                           width: width,
                           height: height,
                           child: Container(
-                            width: MediaQuery.of(context).size.width,
+                            width:MediaQuery.sizeOf(context).width,
                             decoration: BoxDecoration(
                                 image: DecorationImage(
                               image: NetworkImage(stores as String),
@@ -85,22 +85,22 @@ class _ContentProductState extends State<ContentProduct> {
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                    left: AppPadding.p15, top: AppPadding.p20),
+                    left: AppValues.v15, top: AppValues.v20),
                 child: Text(
                   widget.stores.title,
                   style: getBoldStyle(
-                      color: ColorManager.black, fontSize: AppSize.s20),
+                      color: ColorManager.black, fontSize: AppValues.v20),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                    left: AppPadding.p15,
-                    right: AppPadding.p5,
-                    top: AppPadding.p2),
+                    left: AppValues.v15,
+                    right: AppValues.v5,
+                    top: AppValues.v2),
                 child: Text(
                   widget.stores.desc,
                   style: getRegularStyle(
-                      color: ColorManager.lightGrey, fontSize: AppSize.s12),
+                      color: ColorManager.lightGrey, fontSize: AppValues.v12),
                 ),
               ),
               const SizedBox(
@@ -109,20 +109,20 @@ class _ContentProductState extends State<ContentProduct> {
               buildDivider(),
               Padding(
                 padding: const EdgeInsets.only(
-                    left: AppPadding.p15,
-                    right: AppPadding.p5,
-                    top: AppPadding.p8),
+                    left: AppValues.v15,
+                    right: AppValues.v5,
+                    top: AppValues.v8),
                 child: Text(
                   AppStrings.priceDetails.tr(),
                   style: getSemiBoldStyle(
-                      color: ColorManager.black, fontSize: AppSize.s12),
+                      color: ColorManager.black, fontSize: AppValues.v12),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                    left: AppPadding.p15,
-                    right: AppPadding.p5,
-                    top: AppPadding.p8),
+                    left: AppValues.v15,
+                    right: AppValues.v5,
+                    top: AppValues.v8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -134,21 +134,24 @@ class _ContentProductState extends State<ContentProduct> {
                               widget.stores.price +
                               AppStrings.time24,
                           style: getRegularStyle(
-                              color: ColorManager.black, fontSize: AppSize.s8),
+                              color: ColorManager.black,
+                              fontSize: AppValues.v8),
                         ),
                         Text(
                           AppStrings.price +
                               getDiscount(30.0, 2, widget.stores.price) +
                               AppStrings.time48,
                           style: getRegularStyle(
-                              color: ColorManager.black, fontSize: AppSize.s8),
+                              color: ColorManager.black,
+                              fontSize: AppValues.v8),
                         ),
                         Text(
                           AppStrings.price +
                               getDiscount(40.0, 7, widget.stores.price) +
                               AppStrings.timeWeek,
                           style: getRegularStyle(
-                              color: ColorManager.black, fontSize: AppSize.s8),
+                              color: ColorManager.black,
+                              fontSize: AppValues.v8),
                         ),
                       ],
                     ),
@@ -158,7 +161,9 @@ class _ContentProductState extends State<ContentProduct> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           buildDiscount(AppStrings.discount30),
-                          const SizedBox(height: 15,),
+                          const SizedBox(
+                            height: 15,
+                          ),
                           buildDiscount(AppStrings.discount40),
                         ],
                       ),
@@ -172,20 +177,20 @@ class _ContentProductState extends State<ContentProduct> {
               buildDivider(),
               Padding(
                 padding: const EdgeInsets.only(
-                    left: AppPadding.p15,
-                    right: AppPadding.p5,
-                    top: AppPadding.p8),
+                    left: AppValues.v15,
+                    right: AppValues.v5,
+                    top: AppValues.v8),
                 child: Text(
                   AppStrings.moreDetails.tr(),
                   style: getSemiBoldStyle(
-                      color: ColorManager.black, fontSize: AppSize.s12),
+                      color: ColorManager.black, fontSize: AppValues.v12),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                    left: AppPadding.p15,
-                    right: AppPadding.p5,
-                    top: AppPadding.p8),
+                    left: AppValues.v15,
+                    right: AppValues.v5,
+                    top: AppValues.v8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -195,17 +200,20 @@ class _ContentProductState extends State<ContentProduct> {
                         Text(
                           AppStrings.brandDetails.tr(),
                           style: getRegularStyle(
-                              color: ColorManager.black, fontSize: AppSize.s8),
+                              color: ColorManager.black,
+                              fontSize: AppValues.v8),
                         ),
                         Text(
                           AppStrings.sizeDetails.tr(),
                           style: getRegularStyle(
-                              color: ColorManager.black, fontSize: AppSize.s8),
+                              color: ColorManager.black,
+                              fontSize: AppValues.v8),
                         ),
                         Text(
                           AppStrings.codeForRentDetails.tr(),
                           style: getRegularStyle(
-                              color: ColorManager.black, fontSize: AppSize.s8),
+                              color: ColorManager.black,
+                              fontSize: AppValues.v8),
                         ),
                       ],
                     ),
@@ -218,26 +226,27 @@ class _ContentProductState extends State<ContentProduct> {
                             widget.stores.brand,
                             style: getRegularStyle(
                                 color: ColorManager.black,
-                                fontSize: AppSize.s8),
+                                fontSize: AppValues.v8),
                           ),
                           Text(
                             widget.stores.size,
                             style: getRegularStyle(
                                 color: ColorManager.black,
-                                fontSize: AppSize.s8),
+                                fontSize: AppValues.v8),
                           ),
                           Text(
                             getId(widget.stores.id),
                             style: getRegularStyle(
                                 color: ColorManager.black,
-                                fontSize: AppSize.s8),
+                                fontSize: AppValues.v8),
                           ),
                         ],
                       ),
                     ),
                   ],
                 ),
-              ),  const SizedBox(
+              ),
+              const SizedBox(
                 height: 30,
               ),
               Container(
@@ -253,9 +262,9 @@ class _ContentProductState extends State<ContentProduct> {
                 child: Center(
                   child: Text(
                     AppStrings.remember.tr(),
-                    textScaleFactor: 2.0,
-                    style:
-                    getSemiBoldStyle(color: ColorManager.black, fontSize: AppSize.s4),
+                    textScaler: const TextScaler.linear(2.0),
+                    style: getSemiBoldStyle(
+                        color: ColorManager.black, fontSize: AppValues.v4),
                   ),
                 ),
               )
@@ -263,6 +272,7 @@ class _ContentProductState extends State<ContentProduct> {
           ),
         ));
   }
+
   Container buildDiscount(String discount) {
     return Container(
       decoration: BoxDecoration(
@@ -276,9 +286,9 @@ class _ContentProductState extends State<ContentProduct> {
       child: Center(
         child: Text(
           discount,
-          textScaleFactor: 2.0,
-          style:
-              getSemiBoldStyle(color: ColorManager.black, fontSize: AppSize.s4),
+          textScaler: const TextScaler.linear(2.0),
+          style: getSemiBoldStyle(
+              color: ColorManager.black, fontSize: AppValues.v4),
         ),
       ),
     );

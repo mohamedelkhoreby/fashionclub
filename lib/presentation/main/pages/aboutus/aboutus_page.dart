@@ -3,20 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:splashscreen/presentation/resources/color_manager.dart';
-import 'package:splashscreen/presentation/resources/strings_manager.dart';
-import 'package:splashscreen/presentation/resources/values_manager.dart';
-
 import '../../../common/state_renderer/state_renderer.dart';
 import '../../../common/state_renderer/state_renderer_impl.dart';
 import '../../../resources/assets_manager.dart';
+import '../../../resources/color_manager.dart';
 import '../../../resources/font_manager.dart';
 import '../../../resources/launch_manager.dart';
+import '../../../resources/strings_manager.dart';
 import '../../../resources/style_manager.dart';
+import '../../../resources/values_manager.dart';
 import 'buttomSheet.dart';
 
 class AboutUsPage extends StatefulWidget {
-  const AboutUsPage({Key? key}) : super(key: key);
+  const AboutUsPage({super.key});
 
   @override
   AboutUsPageState createState() => AboutUsPageState();
@@ -25,28 +24,28 @@ class AboutUsPage extends StatefulWidget {
 class AboutUsPageState extends State<AboutUsPage> {
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.sizeOf(context).width;
+    double screenHeight = MediaQuery.sizeOf(context).height;
     double sizedBoxWidth = screenWidth / 3.5;
     return SingleChildScrollView(
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Padding(
-            padding: const EdgeInsets.only(left: AppPadding.p8),
+            padding: const EdgeInsets.only(left: AppValues.v8),
             child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(AppStrings.titleConcept.tr(),
                     style: getBoldStyle(
-                        color: ColorManager.black, fontSize: AppSize.s20)))),
+                        color: ColorManager.black, fontSize: AppValues.v20)))),
         Padding(
-          padding: const EdgeInsets.only(
-              left: AppPadding.p12, right: AppPadding.p12),
+          padding:
+              const EdgeInsets.only(left: AppValues.v12, right: AppValues.v12),
           child: Align(
             alignment: Alignment.topLeft,
             child: Text(
               AppStrings.description_1.tr(),
               style: getRegularStyle4(
-                  color: ColorManager.black, fontSize: AppSize.s10),
+                  color: ColorManager.black, fontSize: AppValues.v10),
             ),
           ),
         ),
@@ -61,37 +60,37 @@ class AboutUsPageState extends State<AboutUsPage> {
                       width: screenWidth / 2,
                       color: ColorManager.openPink),
                   Positioned(
-                    top: AppPadding.p10,
-                    left: AppPadding.p5,
-                    child: buildContainer(screenWidth, AppSize.s60,
+                    top: AppValues.v10,
+                    left: AppValues.v5,
+                    child: buildContainer(screenWidth, AppValues.v60,
                         ColorManager.babyBlue, AppStrings.body1.tr()),
                   ),
                   Positioned(
-                    top: AppPadding.p80,
-                    left: AppPadding.p50,
-                    child: buildContainer(screenWidth, AppSize.s60,
+                    top: AppValues.v80,
+                    left: AppValues.v50,
+                    child: buildContainer(screenWidth, AppValues.v60,
                         ColorManager.pink, AppStrings.body2.tr()),
                   ),
                   Positioned(
-                    top: AppPadding.p150,
-                    left: AppPadding.p5,
-                    child: buildContainer(screenWidth, AppSize.s60,
+                    top: AppValues.v150,
+                    left: AppValues.v5,
+                    child: buildContainer(screenWidth, AppValues.v60,
                         ColorManager.babyBlue, AppStrings.body3.tr()),
                   ),
                   Positioned(
-                    top: AppPadding.p220,
-                    left: AppPadding.p50,
-                    child: buildContainer(screenWidth, AppSize.s70,
+                    top: AppValues.v220,
+                    left: AppValues.v50,
+                    child: buildContainer(screenWidth, AppValues.v70,
                         ColorManager.pink, AppStrings.body4.tr()),
                   ),
                 ])),
         Padding(
-            padding: const EdgeInsets.only(left: AppPadding.p8),
+            padding: const EdgeInsets.only(left: AppValues.v8),
             child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(AppStrings.titleVision.tr(),
                     style: getBoldStyle(
-                        color: ColorManager.black, fontSize: AppSize.s20)))),
+                        color: ColorManager.black, fontSize: AppValues.v20)))),
         Align(
             alignment: Alignment.topLeft,
             child: Stack(
@@ -103,35 +102,35 @@ class AboutUsPageState extends State<AboutUsPage> {
                       width: screenWidth,
                       color: ColorManager.openPink),
                   Positioned(
-                    top: AppPadding.p15,
-                    left: AppPadding.p15,
+                    top: AppValues.v15,
+                    left: AppValues.v15,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         buildContainerImage(
                             sizedBoxWidth, screenWidth, ImageAssets.aboutUs1),
-                        const SizedBox(width: AppPadding.p8),
+                        const SizedBox(width: AppValues.v8),
                         buildContainerImage(
                             sizedBoxWidth, screenWidth, ImageAssets.aboutUs2),
-                        const SizedBox(width: AppPadding.p8),
+                        const SizedBox(width: AppValues.v8),
                         buildContainerImage(
                             sizedBoxWidth, screenWidth, ImageAssets.aboutUs3),
                       ],
                     ),
                   ),
                   Positioned(
-                    top: AppPadding.p130,
-                    left: AppPadding.p30,
+                    top: AppValues.v130,
+                    left: AppValues.v30,
                     child: Column(
                       children: [
-                        buildContainer(screenWidth, AppSize.s150,
+                        buildContainer(screenWidth, AppValues.v150,
                             ColorManager.babyBlue, AppStrings.visionBody.tr()),
                         Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               SizedBox(
-                                  height: AppSize.s50,
-                                  width: AppSize.s50,
+                                  height: AppValues.v50,
+                                  width: AppValues.v50,
                                   child: GestureDetector(
                                       onTap: () async {
                                         var urllaunchable = await canLaunchUrl(
@@ -150,8 +149,8 @@ class AboutUsPageState extends State<AboutUsPage> {
                                       child:
                                           Lottie.asset(JsonAssets.instagram))),
                               SizedBox(
-                                  height: AppSize.s35,
-                                  width: AppSize.s35,
+                                  height: AppValues.v35,
+                                  width: AppValues.v35,
                                   child: GestureDetector(
                                       onTap: () async {
                                         var urllaunchable = await canLaunchUrl(
@@ -175,24 +174,25 @@ class AboutUsPageState extends State<AboutUsPage> {
                     ),
                   )
                 ])),
-        const SizedBox(height: AppSize.s35),
+        const SizedBox(height: AppValues.v35),
         Padding(
-          padding: const EdgeInsets.all(AppPadding.p10),
+          padding: const EdgeInsets.all(AppValues.v10),
           child: Align(
               alignment: Alignment.center,
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     SizedBox(
-                      height: AppSize.s35,
-                      width: AppSize.s130,
-                      child: buildElevatedButton(AppStrings.faq,(){}),
+                      height: AppValues.v35,
+                      width: AppValues.v130,
+                      child: buildElevatedButton(AppStrings.faq, () {}),
                     ),
                     SizedBox(
-                      height: AppSize.s35,
-                      width: AppSize.s130,
-                      child: buildElevatedButton(AppStrings.contactUs,
-                            () async {
+                      height: AppValues.v35,
+                      width: AppValues.v130,
+                      child: buildElevatedButton(
+                        AppStrings.contactUs,
+                        () async {
                           var urllaunchable = await canLaunchUrl(AppLaunchUrl
                               .emailLaunchUri); //canLaunch is from url_launcher package
                           if (urllaunchable) {
@@ -201,7 +201,8 @@ class AboutUsPageState extends State<AboutUsPage> {
                           } else {
                             ErrorState(StateRendererType.fullScreenErrorState,
                                 AppStrings.defaultError);
-                          }},
+                          }
+                        },
                       ),
                     ),
                   ])),
@@ -220,17 +221,17 @@ class AboutUsPageState extends State<AboutUsPage> {
                     decoration: TextDecoration.underline)),
           ),
         ),
-        const SizedBox(height: AppSize.s50),
+        const SizedBox(height: AppValues.v50),
       ]),
     );
   }
 
-  ElevatedButton buildElevatedButton(String text,function) {
+  ElevatedButton buildElevatedButton(String text, function) {
     return ElevatedButton(
       onPressed: function,
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(ColorManager.black),
-        shape: MaterialStateProperty.all(
+        backgroundColor: WidgetStateProperty.all<Color>(ColorManager.black),
+        shape: WidgetStateProperty.all(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(0))),
       ),
       child: Text(text,
@@ -245,7 +246,7 @@ class AboutUsPageState extends State<AboutUsPage> {
       double sizedBoxWidth, double screenWidth, String assetImage) {
     return Container(
       width: sizedBoxWidth,
-      height: screenWidth / AppPadding.p3,
+      height: screenWidth / AppValues.v3,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(assetImage),
@@ -259,19 +260,19 @@ class AboutUsPageState extends State<AboutUsPage> {
       double screenWidth, double height, Color color, String text) {
     return Container(
       height: height,
-      width: (screenWidth / AppPadding.p2) + AppSize.s100,
+      width: (screenWidth / AppValues.v2) + AppValues.v100,
       decoration: BoxDecoration(
         border: Border.all(color: color, style: BorderStyle.solid),
-        borderRadius: BorderRadius.circular(AppPadding.p2),
+        borderRadius: BorderRadius.circular(AppValues.v2),
         color: color,
       ),
       child: Center(
           child: Padding(
-        padding: const EdgeInsets.only(left: AppPadding.p3),
+        padding: const EdgeInsets.only(left: AppValues.v3),
         child: Text(
           text,
-          style:
-              getRegularStyle(color: ColorManager.black, fontSize: AppSize.s9),
+          style: getRegularStyle(
+              color: ColorManager.black, fontSize: AppValues.v9),
         ),
       )),
     );

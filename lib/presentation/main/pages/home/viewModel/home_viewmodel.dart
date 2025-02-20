@@ -1,16 +1,13 @@
-
-import 'dart:ffi';
-
 import 'package:rxdart/rxdart.dart';
-import 'package:splashscreen/presentation/base/base_model_view.dart';
 
 import '../../../../../domain/model/models.dart';
 import '../../../../../domain/usecase/home_usecase.dart';
+import '../../../../base/base_model_view.dart';
 import '../../../../common/state_renderer/state_renderer.dart';
 import '../../../../common/state_renderer/state_renderer_impl.dart';
 
 class HomeViewModel extends BaseViewModel
-    with HomeViewModelInput, HomeViewModelOutput {
+    implements HomeViewModelInput, HomeViewModelOutput {
   final _dataStreamController = BehaviorSubject<HomeViewObject>();
 
   final HomeUseCase _homeUseCase;
@@ -26,7 +23,7 @@ class HomeViewModel extends BaseViewModel
   _getHomeData() async {
     inputState.add(LoadingState(
         stateRendererType: StateRendererType.fullScreenLoadingState));
-    (await _homeUseCase.execute(Void)).fold(
+    (await _homeUseCase.execute(null)).fold(
             (failure) => {
           // left -> failure
           inputState.add(ErrorState(

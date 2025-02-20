@@ -8,15 +8,14 @@ import '../../../../common/state_renderer/state_renderer_impl.dart';
 
 import '../viewModel/home_viewmodel.dart';
 
-
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
-  _HomePageState createState() => _HomePageState();
+  HomePageState createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> {
   final HomeViewModel _viewModel = instance<HomeViewModel>();
 
   _bind() {
@@ -31,61 +30,69 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SingleChildScrollView(
-        child: StreamBuilder<FlowState>(
-            stream: _viewModel.outputState,
-            builder: (context, snapshot) {
-              return snapshot.data
-                  ?.getScreenWidget(context, _getContentWidget(), () {
-                _viewModel.start();
-              }) ??
-                  _getContentWidget();
-            }),
-      ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Center(
+          child: SingleChildScrollView(
+            child: StreamBuilder<FlowState>(
+              stream: _viewModel.outputState,
+              builder: (context, snapshot) {
+                return snapshot.data?.getScreenWidget(
+                      context,
+                      _getContentWidget(constraints),
+                      () {
+                        _viewModel.start();
+                      },
+                    ) ??
+                    _getContentWidget(constraints);
+              },
+            ),
+          ),
+        );
+      },
     );
   }
 
-  Widget _getContentWidget() {
+  Widget _getContentWidget(BoxConstraints constraints) {
     return StreamBuilder<HomeViewObject>(
-        stream: _viewModel.outputHomeData,
-        builder: (context, snapshot) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _getBannerWidget(snapshot.data?.banners)
-            ],
-          );
-        });
+      stream: _viewModel.outputHomeData,
+      builder: (context, snapshot) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [_getBannerWidget(snapshot.data?.banners, constraints)],
+        );
+      },
+    );
   }
 
-  Widget _getBannerWidget(List<BannerAd>? banners) {
-    final height = MediaQuery.of(context).size.height;
+  Widget _getBannerWidget(List<BannerAd>? banners, BoxConstraints constraints) {
     if (banners != null) {
       return CarouselSlider(
-          items: banners.map((banner) => SizedBox(
-            width: double.infinity,
-            height: height,
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: ClipRRect(
-               // borderRadius: BorderRadius.circular(AppSize.s12),
-                child: Image.network(banner.image, fit: BoxFit.cover),
+        items: banners
+            .map(
+              (banner) => SizedBox(
+                width: double.infinity,
+                height: constraints.maxHeight,
+                child: ClipRRect(
+                  child: Image.network(banner.image, fit: BoxFit.cover),
+                ),
               ),
-            ),
-          ))
-              .toList(),
-          options: CarouselOptions(
-              scrollDirection: Axis.vertical,
-              height: height,
-              autoPlay: true,
-              viewportFraction: 0.5,
-              enableInfiniteScroll: true,
-              enlargeCenterPage: false));
+            )
+            .toList(),
+        options: CarouselOptions(
+          scrollDirection: Axis.vertical,
+          height: constraints.maxHeight,
+          autoPlay: true,
+          viewportFraction: 0.5,
+          enableInfiniteScroll: true,
+          enlargeCenterPage: false,
+        ),
+      );
     } else {
       return Container();
     }
   }
+
   @override
   void dispose() {
     _viewModel.dispose();

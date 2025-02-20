@@ -45,8 +45,7 @@ class Service {
 
   Service(this.id, this.title, this.image);
 }
-
-class Store{
+class Store {
   int id;
   String title;
   String brand;
@@ -56,8 +55,41 @@ class Store{
   String image1;
   String image2;
   String image3;
-  Store(this.id, this.title,this.brand,this.desc,this.price,this.size,this.image1,this.image2,this.image3);
+
+  Store(this.id, this.title, this.brand, this.desc, this.price, this.size,
+      this.image1, this.image2, this.image3);
+
+  // Convert a Store object into a Map (JSON)
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'brand': brand,
+      'desc': desc,
+      'price': price,
+      'size': size,
+      'image1': image1,
+      'image2': image2,
+      'image3': image3,
+    };
+  }
+
+  // Create a Store object from a JSON map
+  factory Store.fromJson(Map<String, dynamic> json) {
+    return Store(
+      json['id'],
+      json['title'],
+      json['brand'],
+      json['desc'],
+      json['price'],
+      json['size'],
+      json['image1'],
+      json['image2'],
+      json['image3'],
+    );
+  }
 }
+
 
 class BannerAd {
   int id;

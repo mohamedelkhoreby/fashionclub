@@ -2,13 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import 'package:splashscreen/presentation/resources/assets_manager.dart';
-import 'package:splashscreen/presentation/resources/color_manager.dart';
-
+import '../../resources/assets_manager.dart';
+import '../../resources/color_manager.dart';
 import '../../resources/font_manager.dart';
 import '../../resources/strings_manager.dart';
 import '../../resources/style_manager.dart';
 import '../../resources/values_manager.dart';
+
 enum StateRendererType {
   // POPUP STATES (DIALOG)
   popupLoadingState,
@@ -22,8 +22,6 @@ enum StateRendererType {
   contentState
 }
 
-
-
 class StateRenderer extends StatelessWidget {
   final StateRendererType stateRendererType;
   final String message;
@@ -31,10 +29,11 @@ class StateRenderer extends StatelessWidget {
   final Function retryActionFunction;
 
   const StateRenderer(
-      {super.key, required this.stateRendererType,
-        this.message = AppStrings.loading,
-        this.title = "",
-        required this.retryActionFunction});
+      {super.key,
+      required this.stateRendererType,
+      this.message = AppStrings.loading,
+      this.title = "",
+      required this.retryActionFunction});
 
   @override
   Widget build(BuildContext context) {
@@ -73,22 +72,20 @@ class StateRenderer extends StatelessWidget {
           _getMessage(message),
           _getRetryButton(AppStrings.ok.tr(), context)
         ]);
-      default:
-        return Container();
     }
   }
 
   Widget _getPopUpDialog(BuildContext context, List<Widget> children) {
     return Dialog(
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppSize.s14)),
-      elevation: AppSize.s1_5,
+          borderRadius: BorderRadius.circular(AppValues.v14)),
+      elevation: AppValues.v1_5,
       backgroundColor: Colors.transparent,
       child: Container(
         decoration: BoxDecoration(
             color: ColorManager.white,
             shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(AppSize.s14),
+            borderRadius: BorderRadius.circular(AppValues.v14),
             boxShadow: const [BoxShadow(color: Colors.black26)]),
         child: _getDialogContent(context, children),
       ),
@@ -114,15 +111,15 @@ class StateRenderer extends StatelessWidget {
 
   Widget _getAnimatedImage(String animationName) {
     return SizedBox(
-        height: AppSize.s100,
-        width: AppSize.s100,
+        height: AppValues.v100,
+        width: AppValues.v100,
         child: Lottie.asset(animationName));
   }
 
   Widget _getMessage(String message) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(AppPadding.p8),
+        padding: const EdgeInsets.all(AppValues.v8),
         child: Text(
           message,
           style: getRegularStyle(
@@ -136,21 +133,22 @@ class StateRenderer extends StatelessWidget {
   Widget _getRetryButton(String buttonTitle, BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(AppPadding.p18),
+        padding: const EdgeInsets.all(AppValues.v18),
         child: SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-                onPressed: () {
-                  if (stateRendererType ==
-                      StateRendererType.fullScreenErrorState) {
-                    // call retry function
-                    retryActionFunction.call();
-                  } else {
-                    // popup error state
-                    Navigator.of(context).pop();
-                  }
-                },
-                child: Text(buttonTitle))),
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: () {
+              if (stateRendererType == StateRendererType.fullScreenErrorState) {
+                // call retry function
+                retryActionFunction.call();
+              } else {
+                // popup error state
+                Navigator.of(context).pop();
+              }
+            },
+            child: Text(buttonTitle),
+          ),
+        ),
       ),
     );
   }
