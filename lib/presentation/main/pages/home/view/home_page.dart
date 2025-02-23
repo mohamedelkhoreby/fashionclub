@@ -95,7 +95,7 @@ class HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
-    _viewModel.dispose();
+//    _viewModel.dispose();
     super.dispose();
   }
 }

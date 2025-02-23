@@ -86,11 +86,10 @@ class MenuPageState extends State<MenuPage>
     return stores.isNotEmpty
         ? GridView.count(
             crossAxisCount: 2,
-            childAspectRatio: 0.6,
-            crossAxisSpacing: 5,
-            mainAxisSpacing: 1,
+            childAspectRatio: 0.8,
+            crossAxisSpacing: 2,
             primary: false,
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 4),
             physics: const ScrollPhysics(),
             shrinkWrap: true,
             children: stores.map((store) {
@@ -117,22 +116,23 @@ class MenuPageState extends State<MenuPage>
                     ),
                   ),
                   SizedBox(
-                    height: 40,
+                    height: 30,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text("${AppStrings.price} ${store.price}",
                                 style: getBoldStyle(
                                     color: ColorManager.black,
-                                    fontSize: AppValues.v8)),
+                                    fontSize: AppValues.v9)),
                             Text(
                               store.title,
                               style: getRegularStyle(
                                   color: ColorManager.black,
-                                  fontSize: AppValues.v8),
+                                  fontSize: AppValues.v9),
                             ),
                           ],
                         ),
@@ -157,7 +157,7 @@ class MenuPageState extends State<MenuPage>
 
   @override
   void dispose() {
-    _viewModel.dispose();
+ //  _viewModel.dispose();
     super.dispose();
   }
 }

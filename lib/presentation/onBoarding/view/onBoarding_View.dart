@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -107,12 +106,11 @@ class OnBoardingViewState extends State<OnBoardingView> {
     } else {
       return Scaffold(
         backgroundColor: ColorManager.black,
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: ColorManager.black,
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: ColorManager.black,
-            statusBarBrightness: Brightness.light,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(50.0),
+          child: AppBar(
+            backgroundColor:  ColorManager.black,
+            elevation: 0,
           ),
         ),
         body: PageView.builder(
