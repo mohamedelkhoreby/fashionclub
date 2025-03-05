@@ -11,60 +11,74 @@ void bottomSheet(BuildContext context) {
     context: context,
     isScrollControlled: true,
     builder: (BuildContext context) {
+      final height = MediaQuery.of(context).size.height;
+      final width = MediaQuery.of(context).size.width;
+      TextScaler textScaler = MediaQuery.textScalerOf(context);
+
       return SizedBox(
-        height:MediaQuery.sizeOf(context).height - (kToolbarHeight),
+        height: height - kToolbarHeight,
         child: SingleChildScrollView(
-          child: Column(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Align(
                   alignment: Alignment.topRight,
                   child: IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      icon: Icon(
-                        Icons.close,
-                        color: ColorManager.black,
-                      )),
+                    onPressed: () => Navigator.pop(context),
+                    icon: Icon(
+                      Icons.close,
+                      color: ColorManager.black,
+                    ),
+                  ),
                 ),
-                titleText(AppStrings.privacyTitle.tr()),
-                bodyText(AppStrings.privacyBody.tr()),
-                titleText(AppStrings.informationTitle.tr()),
-                bodyText(AppStrings.informationBody.tr()),
-                titleText(AppStrings.logDataTitle.tr()),
-                bodyText(AppStrings.logDataBody.tr()),
-                titleText(AppStrings.serviceTitle.tr()),
-                bodyText(AppStrings.serviceBody.tr()),
-                titleText(AppStrings.securityTitle.tr()),
-                bodyText(AppStrings.securityBody.tr()),
-                titleText(AppStrings.changePrivacyTitle.tr()),
-                bodyText(AppStrings.changePrivacyBody.tr()),
-                titleText(AppStrings.contactUsTitle.tr()),
-                bodyText(AppStrings.contactUsBody.tr()),
-              ]),
+                titleText(AppStrings.privacyTitle.tr(), textScaler),
+                bodyText(AppStrings.privacyBody.tr(), textScaler),
+                titleText(AppStrings.informationTitle.tr(), textScaler),
+                bodyText(AppStrings.informationBody.tr(), textScaler),
+                titleText(AppStrings.logDataTitle.tr(), textScaler),
+                bodyText(AppStrings.logDataBody.tr(), textScaler),
+                titleText(AppStrings.serviceTitle.tr(), textScaler),
+                bodyText(AppStrings.serviceBody.tr(), textScaler),
+                titleText(AppStrings.securityTitle.tr(), textScaler),
+                bodyText(AppStrings.securityBody.tr(), textScaler),
+                titleText(AppStrings.changePrivacyTitle.tr(), textScaler),
+                bodyText(AppStrings.changePrivacyBody.tr(), textScaler),
+                titleText(AppStrings.contactUsTitle.tr(), textScaler),
+                bodyText(AppStrings.contactUsBody.tr(), textScaler),
+              ],
+            ),
+          ),
         ),
       );
     },
   );
 }
 
-Padding bodyText(String text) {
+Padding bodyText(String text, TextScaler textScaler) {
   return Padding(
     padding: const EdgeInsets.all(AppValues.v8),
     child: Text(
       text,
-      style:
-          getRegularStyle(color: ColorManager.black, fontSize: AppValues.v10),
+      style: getRegularStyle(
+        color: ColorManager.black,
+        fontSize: textScaler.scale(AppValues.v15),
+      ),
     ),
   );
 }
 
-Padding titleText(String text) {
+Padding titleText(String text, TextScaler textScaler) {
   return Padding(
     padding: const EdgeInsets.all(AppValues.v8),
     child: Text(
       text,
-      style: getBoldStyle(color: ColorManager.black, fontSize: AppValues.v14),
+      style: getBoldStyle(
+        color: ColorManager.black,
+        fontSize: textScaler.scale(AppValues.v20),
+      ),
     ),
   );
 }

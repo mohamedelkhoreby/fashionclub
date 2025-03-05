@@ -27,104 +27,104 @@ class AboutUsPageState extends State<AboutUsPage> {
     double screenWidth = MediaQuery.sizeOf(context).width;
     double screenHeight = MediaQuery.sizeOf(context).height;
     double sizedBoxWidth = screenWidth / 3.5;
+    double baseFontSize = screenWidth * 0.05; // Adjust this value as needed
+
     return SingleChildScrollView(
-      child:
-          Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Padding(
-            padding: const EdgeInsets.only(left: AppValues.v8),
-            child: Align(
-                alignment: Alignment.topLeft,
-                child: Text(AppStrings.titleConcept.tr(),
-                    style: getBoldStyle(
-                        color: ColorManager.black, fontSize: AppValues.v20)))),
-        Padding(
-          padding:
-              const EdgeInsets.only(left: AppValues.v12, right: AppValues.v12),
-          child: Align(
-            alignment: Alignment.topLeft,
-            child: Text(
-              AppStrings.description_1.tr(),
-              style: getRegularStyle4(
-                  color: ColorManager.black, fontSize: AppValues.v10),
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(AppValues.v8),
+              child: Text(
+                AppStrings.titleConcept.tr(),
+                style: getBoldStyle(
+                    color: ColorManager.black, fontSize: baseFontSize),
+              ),
             ),
-          ),
-        ),
-        Align(
-            alignment: Alignment.topLeft,
-            child: Stack(
-                clipBehavior: Clip.none,
-                fit: StackFit.passthrough,
-                children: <Widget>[
-                  Container(
-                      height: screenHeight / 2,
-                      width: screenWidth / 2,
-                      color: ColorManager.openPink),
-                  Positioned(
-                    top: AppValues.v10,
-                    left: AppValues.v5,
-                    child: buildContainer(screenWidth, AppValues.v60,
-                        ColorManager.babyBlue, AppStrings.body1.tr()),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                AppStrings.description_1.tr(),
+                style: getRegularStyle4(
+                    color: ColorManager.black, fontSize: baseFontSize * 0.5),
+              ),
+            ),
+            Container(
+              height: screenHeight / 2.3,
+              width: screenWidth,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [ColorManager.openPink, Colors.white],
+                  begin: Alignment.topLeft,
+                  end: Alignment.topRight,
+                ),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: screenHeight * 0.03,
+                children: [
+                  buildContainer(
+                      screenWidth,
+                      screenHeight * 0.08,
+                      ColorManager.babyBlue,
+                      AppStrings.body1.tr(),
+                      baseFontSize),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: buildContainer(screenWidth, screenHeight * 0.08,
+                        ColorManager.pink, AppStrings.body2.tr(), baseFontSize),
                   ),
-                  Positioned(
-                    top: AppValues.v80,
-                    left: AppValues.v50,
-                    child: buildContainer(screenWidth, AppValues.v60,
-                        ColorManager.pink, AppStrings.body2.tr()),
+                  buildContainer(
+                      screenWidth,
+                      screenHeight * 0.08,
+                      ColorManager.babyBlue,
+                      AppStrings.body3.tr(),
+                      baseFontSize),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: buildContainer(screenWidth, screenHeight * 0.08,
+                        ColorManager.pink, AppStrings.body4.tr(), baseFontSize),
                   ),
-                  Positioned(
-                    top: AppValues.v150,
-                    left: AppValues.v5,
-                    child: buildContainer(screenWidth, AppValues.v60,
-                        ColorManager.babyBlue, AppStrings.body3.tr()),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(AppStrings.titleVision.tr(),
+                  style: getBoldStyle(
+                      color: ColorManager.black, fontSize: baseFontSize)),
+            ),
+            Container(
+              height: screenWidth / 1.2,
+              width: screenWidth,
+              color: ColorManager.openPink,
+              child: Stack(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      buildContainerImage(
+                          sizedBoxWidth, screenWidth, ImageAssets.aboutUs1),
+                      const SizedBox(width: AppValues.v8),
+                      buildContainerImage(
+                          sizedBoxWidth, screenWidth, ImageAssets.aboutUs2),
+                      const SizedBox(width: AppValues.v8),
+                      buildContainerImage(
+                          sizedBoxWidth, screenWidth, ImageAssets.aboutUs3),
+                    ],
                   ),
-                  Positioned(
-                    top: AppValues.v220,
-                    left: AppValues.v50,
-                    child: buildContainer(screenWidth, AppValues.v70,
-                        ColorManager.pink, AppStrings.body4.tr()),
-                  ),
-                ])),
-        Padding(
-            padding: const EdgeInsets.only(left: AppValues.v8),
-            child: Align(
-                alignment: Alignment.topLeft,
-                child: Text(AppStrings.titleVision.tr(),
-                    style: getBoldStyle(
-                        color: ColorManager.black, fontSize: AppValues.v20)))),
-        Align(
-            alignment: Alignment.topLeft,
-            child: Stack(
-                clipBehavior: Clip.none,
-                fit: StackFit.passthrough,
-                children: <Widget>[
-                  Container(
-                      height: (screenWidth / 2) + 180,
-                      width: screenWidth,
-                      color: ColorManager.openPink),
-                  Positioned(
-                    top: AppValues.v15,
-                    left: AppValues.v15,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        buildContainerImage(
-                            sizedBoxWidth, screenWidth, ImageAssets.aboutUs1),
-                        const SizedBox(width: AppValues.v8),
-                        buildContainerImage(
-                            sizedBoxWidth, screenWidth, ImageAssets.aboutUs2),
-                        const SizedBox(width: AppValues.v8),
-                        buildContainerImage(
-                            sizedBoxWidth, screenWidth, ImageAssets.aboutUs3),
-                      ],
-                    ),
-                  ),
-                  Positioned(
-                    top: AppValues.v130,
-                    left: AppValues.v30,
+                  Padding(
+                    padding: EdgeInsets.only(top: screenHeight * 0.1),
                     child: Column(
                       children: [
-                        buildContainer(screenWidth, AppValues.v150,
-                            ColorManager.babyBlue, AppStrings.visionBody.tr()),
+                        buildContainer(
+                            screenWidth,
+                            screenHeight * 0.2,
+                            ColorManager.babyBlue,
+                            AppStrings.visionBody.tr(),
+                            baseFontSize),
                         Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -146,8 +146,7 @@ class AboutUsPageState extends State<AboutUsPage> {
                                               AppStrings.defaultError);
                                         }
                                       },
-                                      child:
-                                          Lottie.asset(JsonAssets.instagram))),
+                                      child: Lottie.asset(JsonAssets.instagram))),
                               SizedBox(
                                   height: AppValues.v35,
                                   width: AppValues.v35,
@@ -172,57 +171,60 @@ class AboutUsPageState extends State<AboutUsPage> {
                             ]),
                       ],
                     ),
-                  )
-                ])),
-        const SizedBox(height: AppValues.v35),
-        Padding(
-          padding: const EdgeInsets.all(AppValues.v10),
-          child: Align(
-              alignment: Alignment.center,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    SizedBox(
-                      height: AppValues.v35,
-                      width: AppValues.v130,
-                      child: buildElevatedButton(AppStrings.faq, () {}),
-                    ),
-                    SizedBox(
-                      height: AppValues.v35,
-                      width: AppValues.v130,
-                      child: buildElevatedButton(
-                        AppStrings.contactUs,
-                        () async {
-                          var urllaunchable = await canLaunchUrl(AppLaunchUrl
-                              .emailLaunchUri); //canLaunch is from url_launcher package
-                          if (urllaunchable) {
-                            await launchUrl(AppLaunchUrl
-                                .contactEmailUri); //launch is from url_launcher package to launch URL
-                          } else {
-                            ErrorState(StateRendererType.fullScreenErrorState,
-                                AppStrings.defaultError);
-                          }
-                        },
-                      ),
-                    ),
-                  ])),
-        ),
-        Center(
-          child: TextButton(
-            onPressed: () {
-              bottomSheet(context);
-            },
-            child: Text(AppStrings.privacyTitle.tr(),
-                style: TextStyle(
-                    color: ColorManager.black,
-                    fontSize: FontSize.s10,
-                    fontFamily: FontConstants.fontFamily,
-                    fontWeight: FontWeightManager.semiBold,
-                    decoration: TextDecoration.underline)),
-          ),
-        ),
-        const SizedBox(height: AppValues.v50),
-      ]),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: AppValues.v35),
+            Padding(
+              padding: const EdgeInsets.all(AppValues.v10),
+              child: Align(
+                  alignment: Alignment.center,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        SizedBox(
+                          height: AppValues.v35,
+                          width: AppValues.v130,
+                          child: buildElevatedButton(AppStrings.faq, () {}),
+                        ),
+                        SizedBox(
+                          height: AppValues.v35,
+                          width: AppValues.v130,
+                          child: buildElevatedButton(
+                            AppStrings.contactUs,
+                            () async {
+                              var urllaunchable = await canLaunchUrl(AppLaunchUrl
+                                  .emailLaunchUri); //canLaunch is from url_launcher package
+                              if (urllaunchable) {
+                                await launchUrl(AppLaunchUrl
+                                    .contactEmailUri); //launch is from url_launcher package to launch URL
+                              } else {
+                                ErrorState(
+                                    StateRendererType.fullScreenErrorState,
+                                    AppStrings.defaultError);
+                              }
+                            },
+                          ),
+                        ),
+                      ])),
+            ),
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  bottomSheet(context);
+                },
+                child: Text(AppStrings.privacyTitle.tr(),
+                    style: TextStyle(
+                        color: ColorManager.black,
+                        fontSize: baseFontSize * 0.5,
+                        fontFamily: FontConstants.fontFamily,
+                        fontWeight: FontWeightManager.semiBold,
+                        decoration: TextDecoration.underline)),
+              ),
+            ),
+            const SizedBox(height: AppValues.v50),
+          ]),
     );
   }
 
@@ -256,8 +258,8 @@ class AboutUsPageState extends State<AboutUsPage> {
     );
   }
 
-  Container buildContainer(
-      double screenWidth, double height, Color color, String text) {
+  Container buildContainer(double screenWidth, double height, Color color,
+      String text, double baseFontSize) {
     return Container(
       height: height,
       width: (screenWidth / AppValues.v2) + AppValues.v100,
@@ -272,7 +274,7 @@ class AboutUsPageState extends State<AboutUsPage> {
         child: Text(
           text,
           style: getRegularStyle(
-              color: ColorManager.black, fontSize: AppValues.v9),
+              color: ColorManager.black, fontSize: baseFontSize * 0.7),
         ),
       )),
     );

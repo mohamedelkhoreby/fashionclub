@@ -17,6 +17,7 @@ class MenuPage extends StatefulWidget {
   @override
   MenuPageState createState() => MenuPageState();
 }
+
 class MenuPageState extends State<MenuPage>
     with SingleTickerProviderStateMixin {
   final MenuViewModel _viewModel = instance<MenuViewModel>();
@@ -52,44 +53,51 @@ class MenuPageState extends State<MenuPage>
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.sizeOf(context).height;
+    final screenWidth = MediaQuery.sizeOf(context).width;
+
+    TextScaler textScaler = MediaQuery.textScalerOf(context);
     return Center(
       child: SingleChildScrollView(
         child: StreamBuilder<FlowState>(
           stream: _viewModel.outputState,
           builder: (context, snapshot) {
-            return snapshot.data
-                    ?.getScreenWidget(context, _getContentWidget(), () {
+            return snapshot.data?.getScreenWidget(context,
+                    _getContentWidget(screenHeight, screenWidth, textScaler),
+                    () {
                   _viewModel.start();
                 }) ??
-                _getContentWidget();
+                _getContentWidget(screenHeight, screenWidth, textScaler);
           },
         ),
       ),
     );
   }
 
-  Widget _getContentWidget() {
+  Widget _getContentWidget(screenHeight, screenWidth, textScaler) {
     return StreamBuilder<MenuViewObject>(
       stream: _viewModel.outputMenuData,
       builder: (context, snapshot) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _getStoresWidget(snapshot.data?.stores ?? []),
+            _getStoresWidget(snapshot.data?.stores ?? [], screenHeight,
+                screenWidth, textScaler),
           ],
         );
       },
     );
   }
 
-  Widget _getStoresWidget(List<Store> stores) {
+  Widget _getStoresWidget(
+      List<Store> stores, screenHeight, screenWidth, TextScaler textScaler) {
     return stores.isNotEmpty
         ? GridView.count(
             crossAxisCount: 2,
-            childAspectRatio: 0.8,
+            childAspectRatio: screenWidth / (screenHeight / 1.25),
             crossAxisSpacing: 2,
             primary: false,
-            padding: const EdgeInsets.symmetric(horizontal: 4),
+            padding: const EdgeInsets.symmetric(horizontal: 1),
             physics: const ScrollPhysics(),
             shrinkWrap: true,
             children: stores.map((store) {
@@ -106,7 +114,7 @@ class MenuPageState extends State<MenuPage>
                       );
                     },
                     child: Container(
-                      height: 200,
+                      height: screenHeight / 3,
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           image: NetworkImage(store.image1),
@@ -115,8 +123,9 @@ class MenuPageState extends State<MenuPage>
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 30,
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppValues.v8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -127,12 +136,12 @@ class MenuPageState extends State<MenuPage>
                             Text("${AppStrings.price} ${store.price}",
                                 style: getBoldStyle(
                                     color: ColorManager.black,
-                                    fontSize: AppValues.v9)),
+                                    fontSize: textScaler.scale(AppValues.v14))),
                             Text(
                               store.title,
                               style: getRegularStyle(
                                   color: ColorManager.black,
-                                  fontSize: AppValues.v9),
+                                  fontSize: textScaler.scale(AppValues.v14)),
                             ),
                           ],
                         ),
@@ -140,9 +149,10 @@ class MenuPageState extends State<MenuPage>
                           onPressed: () => _toggleLike(store),
                           icon: Icon(
                             isSaved ? Icons.favorite : Icons.favorite_border,
-                            size: 15,
-                            color:
-                                isSaved ? ColorManager.error : ColorManager.grey,
+                            size: textScaler.scale(AppValues.v15),
+                            color: isSaved
+                                ? ColorManager.error
+                                : ColorManager.grey,
                           ),
                         ),
                       ],
@@ -157,7 +167,7 @@ class MenuPageState extends State<MenuPage>
 
   @override
   void dispose() {
- //  _viewModel.dispose();
+    //  _viewModel.dispose();
     super.dispose();
   }
 }

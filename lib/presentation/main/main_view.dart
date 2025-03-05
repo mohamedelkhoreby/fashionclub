@@ -10,11 +10,14 @@ import 'pages/aboutus/aboutus_page.dart';
 import 'pages/likes/view/likes_page.dart';
 import 'pages/menu/view/menu_page.dart';
 import 'pages/rent/rent_page.dart';
+
 class MainView extends StatefulWidget {
   const MainView({super.key});
+
   @override
   MainViewState createState() => MainViewState();
 }
+
 class MainViewState extends State<MainView> {
   List<Widget> pages = [
     const HomePage(),
@@ -23,6 +26,7 @@ class MainViewState extends State<MainView> {
     const RentPage(),
     const AboutUsPage()
   ];
+
   List<String> titles = [
     AppStrings.homeTitle.tr(),
     AppStrings.likeTitle.tr(),
@@ -30,25 +34,28 @@ class MainViewState extends State<MainView> {
     AppStrings.rentTitle.tr(),
     AppStrings.aboutUsTitle.tr(),
   ];
+
   var _title = AppStrings.homeTitle.tr();
   var _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: ColorManager.white,
-          shadowColor: ColorManager.lightGrey,
-          elevation: 0.2,
-          title: Text(_title, style: getBoldStyle(color: ColorManager.black)),
-        ),
-        body: Stack(children: <Widget>[
-          pages[_currentIndex],
+      appBar: AppBar(
+        backgroundColor: ColorManager.white,
+        shadowColor: ColorManager.lightGrey,
+        elevation: 0.2,
+        title: Text(_title, style: getBoldStyle(color: ColorManager.black)),
+      ),
+      body: Column(
+        children: <Widget>[
+          Expanded(child: pages[_currentIndex]),
           Align(
             alignment: Alignment.bottomCenter,
             child: Theme(
               data: Theme.of(context).copyWith(canvasColor: Colors.transparent),
               child: BottomNavigationBar(
-                backgroundColor: ColorManager.white.withValues(alpha: 0.5),
+                backgroundColor: ColorManager.white.withAlpha(128),
                 iconSize: 20.0,
                 elevation: 0,
                 selectedItemColor: ColorManager.black,
@@ -78,8 +85,11 @@ class MainViewState extends State<MainView> {
               ),
             ),
           ),
-        ]));
+        ],
+      ),
+    );
   }
+
   onTap(int index) {
     setState(() {
       _currentIndex = index;
