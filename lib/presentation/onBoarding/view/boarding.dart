@@ -7,7 +7,7 @@ import '../../resources/color_manager.dart';
 import '../../resources/font_manager.dart';
 import '../../resources/strings_manager.dart';
 import '../../resources/style_manager.dart';
-import 'onboarding_view.dart';
+import 'on_boarding_view.dart';
 
 class Boarding extends StatelessWidget {
   const Boarding({super.key});

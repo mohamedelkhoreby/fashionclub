@@ -12,7 +12,7 @@ import '../../../resources/launch_manager.dart';
 import '../../../resources/strings_manager.dart';
 import '../../../resources/style_manager.dart';
 import '../../../resources/values_manager.dart';
-import 'buttomSheet.dart';
+import 'buttom_sheet.dart';
 
 class AboutUsPage extends StatefulWidget {
   const AboutUsPage({super.key});

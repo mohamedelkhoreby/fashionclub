@@ -13,7 +13,7 @@ import '../../resources/routes_manager.dart';
 import '../../resources/strings_manager.dart';
 import '../../resources/style_manager.dart';
 import '../../resources/values_manager.dart';
-import '../view_model/onboarding_viewmodel.dart';
+import '../view_model/onboarding_view_model.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({super.key});
